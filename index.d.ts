@@ -13,8 +13,14 @@ declare module 'qwebchannel' {
     response = 10,
   }
 
-  export interface QWebChannel {
-    new (transport: WebSocket, initCallback: (channel: QWebChannel) => void): QWebChannel;
+  export type QWebChannelTransport = {
+    webChannelTransport: any;
+  }
+
+  export class QWebChannel {
+    constructor (transport: WebSocket, initCallback: (channel: QWebChannel) => void);
+
+    objects: any;
 
     send(data: any): void;
     exec(data: any, callback: (data: any) => void): void;
